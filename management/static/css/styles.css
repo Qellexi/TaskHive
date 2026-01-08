@@ -1,0 +1,473 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    height: calc(100vh - 90px);
+}
+
+.sidebar-col {
+    flex: 0 0 110px;
+    width: 110px;
+    display: flex;
+    background-color: #D9D9D9;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1rem #D9D9D9;
+    height: auto;
+    overflow-y: auto;
+}
+
+.content-col {
+    flex: 1 1 auto;
+    margin-left: 110px;
+    min-width: 0;
+    min-height: 0;
+    padding: 15px;
+    overflow-y: auto;
+}
+.content-inner {
+
+}
+
+@media (max-width: 600px) {
+    .layout {
+        flex-direction: column;
+        height: auto;
+    }
+    .sidebar-col {
+        flex: 0 0 auto;
+        width: 100%;
+        height: auto;
+        justify-content: center;
+        flex-direction: row;
+        padding: 10px 0;
+    }
+    .sidebar-nav {
+        flex-direction: row;
+    }
+    .sidebar-nav li {
+        margin: 0 5px;
+    }
+    .content-col {
+        margin-left: 0;
+    }
+}
+
+iconify-icon {
+    font-size: 32px;
+    color: #404040;
+    margin: 10px;
+}
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 10px;
+    margin: 0;
+    list-style: none;
+}
+.sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    text-decoration: none;
+}
+.sidebar-user-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-user-block .username {
+    font-size: 15px;
+    margin-top: -20px;
+    color: #404040;
+}
+
+.topbar {
+    height: 90px;
+    width: 100%;
+    background-color: #D9D9D9;
+    color: #404040;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    padding: 0 16px;
+}
+
+.menu-top {
+    margin-top: 0;
+}
+
+.menu-bottom {
+    margin-bottom: 10px;
+}
+.logo-text {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.search {
+  font-size: 1rem;
+  color: #555;
+}
+.search input {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.info {
+    padding: 20px;
+}
+.info li {
+    list-style-type: none;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.button {
+    float: right;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+    background-color: #666;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #333;
+    color: white;
+}
+
+.button.btn-delete {
+    background-color: #cc0000 !important;
+    border-color: #cc0000 !important;
+}
+.button.btn-delete:hover {
+    background-color: #800000 !important;
+}
+.card-box {
+    padding: 10px;
+}
+#chatList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.chat-card {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    min-height: 70px;
+    padding: 10px;
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    box-shadow: 10px 15px 13px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(6px);
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    white-space: normal;
+    overflow-wrap: break-word;
+    justify-content: center;
+    user-select: none;
+    font-weight: bolder;
+    color: black;
+}
+.chat-card:hover {
+    border: 1px solid black;
+    transform: scale(0.95);
+}
+.chat-card:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+.chat-box {
+    padding: 17px;
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    border-radius: 17px;
+}
+
+.message {
+    padding: 8px 12px;
+    margin: 5px 0;
+    max-width: 70%;
+    clear: both;
+    border-radius: 10px;
+}
+
+.message-left {
+    background: #4f4f4f;
+    float: left;
+    text-align: left;
+    color: white;
+}
+
+.message-right {
+    background: #c4e3ff;
+    float: right;
+    text-align: right;
+}
+.send_box {
+    height: 35px;
+    flex: 1;
+}
+
+.chat-log {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 10px;
+}
+
+.chat-input-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.project-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#project-select {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #999;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Опції селекту */
+#project-select option {
+    padding: 8px 10px;
+    font-size: 16px;
+}
+
+/* Стара навігаційна панель (якщо потрібна) */
+.project-switcher {
+    display: inline-block;
+    padding: 0;
+    font-size: 18px;
+    background-color: #666;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.project-switcher li {
+    list-style-type: none;
+    padding: 17px 30px;
+}
+
+.project-switcher li:hover {
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+}
+
+.layout-container {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 100%;
+    padding-right: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin-bottom: 80px;
+}
+.layout-container > .info-column {
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 250px;
+    justify-content: center;
+
+}
+.info-block {
+    display:flex;
+    flex-direction: column;
+    background: #666;
+    font-size: 20px;
+    color: white;
+    height: 250px;
+    padding: 1.2rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+}
+.info-block h2{
+    font-size: 60px;
+}
+.diagram-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.diagram-container {
+    flex: 1;
+    min-height: 260px;
+    height: auto;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+@media (max-width: 900px) {
+    .diagram-row {
+        flex-direction: column;
+    }
+}
+@media (max-width: 1250px) {
+    .layout-container {
+        grid-template-columns: 1fr;
+    }
+    .layout-container > .info-column {
+        justify-self: center;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    .calendar-contain {
+        width: 100%;
+    }
+    .diagram-row {
+        width: 100%;
+    }
+}
+
+.task-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background: #f9f9f9;
+}
+
+.task-left {
+    width: 60%;
+}
+
+.task-right {
+    width: 38%;
+    background: #ffffff;
+    border-left: 3px solid #ddd;
+    padding-left: 15px;
+}
+
+.comments {
+    margin-bottom: 10px;
+}
+
+.comment {
+    background: #eef2ff;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
+
+.add-comment-form textarea {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 6px;
+}
+
+.add-comment-form button {
+    margin-top: 8px;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #4f46e5;
+    color: white;
+    cursor: pointer;
+}
+.add-comment-form button:hover {
+    background: #4338ca;
+}
+.delete-btn {
+    background: none;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+    font-size: 14px;
+    padding-left: 8px;
+}
+
+.delete-btn:hover {
+    color: #ff0000;
+}
+
+.task-status-container {
+    background: #eee;
+    border-style: dashed;
+    border-color: #333;
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    border-radius: 20px;
+}
+@media screen and (min-width: 550px) {
+    .task-status-container {
+        gap: 2rem;
+    }
+}
+.task-block {
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    margin: 30px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    font-size: 18px;
+    color: white;
+
+
+}
+.task-block h3{
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+}
