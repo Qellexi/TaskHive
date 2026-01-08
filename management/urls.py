@@ -1,0 +1,50 @@
+from django.urls import path
+
+from management.views import (
+    index,
+    WorkerListView,
+    WorkerDetailView,
+    TaskListView,
+    TaskDetailView,
+    assign_organization, ProjectListView, register, ProjectDetailView, TeamListView, TeamDetailView, WorkerUpdateView,
+    profile, ProjectUpdateView, chat_view, ChatRoomListView, ChatRoomCreateView, chat_room, CommentListView,
+    TaskCreateView, TaskUpdateView, ProjectCreateView, TeamCreateView, TeamUpdateView, add_comment, delete_comment,
+    TaskDeleteView, ProjectDeleteView, TeamDeleteView, WorkerDeleteView, feedback_view, AboutView,
+)
+
+urlpatterns = [
+    path("", index, name="index"),
+    path("register", register, name="register"),
+    path("profile", profile, name="profile"),
+    #path("dashboard"),
+    path("workers/", WorkerListView.as_view(), name="worker-list"),
+    path("workers/<int:pk>", WorkerDetailView.as_view(), name="worker-detail"),
+    path("workers/<int:pk>/update", WorkerUpdateView.as_view(), name="worker-update"),
+    path("workers/<int:pk>/delete", WorkerDeleteView.as_view(), name="worker-delete"),
+    path("tasks/", TaskListView.as_view(), name="task-list"),
+    path("task/<int:pk>", TaskDetailView.as_view(), name="task-detail"),
+    path("task/create", TaskCreateView.as_view(), name="task-create"),
+    path("task/<int:pk>/update", TaskUpdateView.as_view(), name="task-update"),
+    path("task/<int:pk>/delete", TaskDeleteView.as_view(), name="task-delete"),
+    path("projects/", ProjectListView.as_view(), name="project-list"),
+    path("projects/<int:pk>", ProjectDetailView.as_view(), name="project-detail"),
+    path("projects/create", ProjectCreateView.as_view(), name="project-create"),
+    path("projects/<int:pk>/update", ProjectUpdateView.as_view(), name="project-update"),
+    path("projects/<int:pk>/delete", ProjectDeleteView.as_view(), name="project-delete"),
+    path("teams/", TeamListView.as_view(), name="team-list"),
+    path("teams/<int:pk>", TeamDetailView.as_view(), name="team-detail"),
+    path("teams/create", TeamCreateView.as_view(), name="team-create"),
+    path("teams/<int:pk>/update/", TeamUpdateView.as_view(), name="team-update"),
+    path("teams/<int:pk>/delete/", TeamDeleteView.as_view(), name="team-delete"),
+    path("assign-organization/", assign_organization, name="assign-organization"),
+    path("chats/", ChatRoomListView.as_view(), name="chat-list"),
+    path("chat/<int:pk>", chat_room, name="chat-room"),
+    path("chat/create", ChatRoomCreateView.as_view(), name="chat-create"),
+    path("comments/", CommentListView.as_view(), name="comment-list"),
+    path("tasks/<int:task_id>/add-comment", add_comment, name="add_comment"),
+    path("comments/<int:comment_id>/delete", delete_comment, name="delete_comment"),
+    path("feedback/submit/", feedback_view, name="feedback"),
+    path("about/", AboutView.as_view(), name="about"),
+]
+
+app_name = "management"
