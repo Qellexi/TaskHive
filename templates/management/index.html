@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
+{% block title %}
+  <title>Home page</title>
+{% endblock %}
+{% block content %}
+  {% now "Y-m-d" as today %}
+  <h1>Welcome to TaskHive!</h1>
+  <h3>TaskHive service content</h3>
+  <ul>
+    <li>Number of workers already using this platform: {{ num_workers }}.</li>
+    <li>You have visited this site: {{ num_visits }} time{{ num_visits|pluralize }}.</li>
+  </ul>
+
+  <div class="layout-container">
+  <div class="info-column">
+    <div class="project-content">
+    <form id="project-switcher" method="get">
+    <label for="project-select">Select project:</label>
+    <select name="project" id="project-select" onchange="this.form.submit()">
+      <option value="">All Projects</option>
+      {% for project in project_list %}
+        <option value="{{ project.id }}" {% if selected_project and project.id == selected_project.id %}selected{% endif %}>
+          {{ project.name }}
+        </option>
+      {% endfor %}
+    </select>
+    </form>
+  </div>
+    <div class="info-block">
+      <h2>{{ num_tasks_done }}/{{ num_tasks }}</h2>
+      <p>tasks done</p>
+    </div>
+    <div class="info-block">
+      <h2>{{ num_tasks_todo }}</h2>
+      <p>task{{ num_tasks_todo|pluralize }} await</p>
+    </div>
+  </div>
+  <section class="calendar-contain">
+
+  <!-- TITLE BAR -->
+  <section class="title-bar">
+
+    <!-- Month/Year Display with Prev/Next buttons -->
+    <span class="title-bar__year">
+      <a href="?month={{ prev_month.month }}&year={{ prev_month.year }}
+      {% if selected_project %}&project={{ selected_project.id }}{% endif %}">&larr;</a>
+        {{ month_name }} {{ year }}
+      <a href="?month={{ next_month.month }}&year={{ next_month.year }}
+      {% if selected_project %}&project={{ selected_project.id }}{% endif %}">&rarr;</a>
+    </span>
+
+  </section>
+
+  <!-- SIDEBAR -->
+  <aside class="calendar__sidebar">
+    <h2 class="sidebar__heading">{{ selected_day|date:"l, F j" }}</h2>
+    {% with selected_day=selected_day|default:today %}
+    <ul class="sidebar__list">
+      {% for task in tasks_by_day|dict_get:selected_day %}
+        <li class="sidebar__list-item {% if task.is_completed %}sidebar__list-item--complete{% endif %}"
+            style="background-color: {{ task.type.color }}; border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 0.8rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); list-style: none;">
+          <div class="task-content" style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="list-item__time">{{ task.deadline|time:"H:i" }}</span>
+            <span class="task-title">{{ task.name }}</span>
+          </div>
+          {% if task.is_completed %}
+            <div style="font-size: 0.8rem; color: #999; margin-top: 0.3rem;">(Done)</div>
+          {% endif %}
+        </li>
+      {% empty %}
+        <li class="sidebar__list-item" style="padding: 0.8rem 1rem; border-radius: 8px; background-color: #f0f0f0; list-style: none;">No tasks today</li>
+      {% endfor %}
+    </ul>
+  {% endwith %}
+  </aside>
+
+  <!-- CALENDAR DAYS -->
+  <section class="calendar__days">
+
+    <!-- Top bar: Days of week -->
+    <section class="calendar__top-bar">
+      {% for day in weekday_names %}
+        <span class="top-bar__days">{{ day }}</span>
+      {% endfor %}
+    </section>
+
+    <!-- Days Grid -->
+    <section class="calendar__month">
+      {% with padded_days=num_padding_days|make_list|length|add:days|length %}
+      {% for week in weeks %}
+      <div class="calendar__week">
+        {% for day in week %}
+          <div class="calendar__day
+                      {% if day|date:"Y-m-d" == today %}today{% endif %}
+                      {% if not day %}inactive{% endif %}">
+            {% if day %}
+              <a href="?day={{ day|date:"Y-m-d" }}{% if selected_project %}&project={{ selected_project.id }}{% endif %}&month={{ month }}&year={{ year }}">
+                <span class="calendar__date">{{ day.day }}</span>
+                <span class="calendar__task {% if day|date:"Y-m-d" == today %}calendar__task--today{% endif %}">
+                  {{ tasks_by_day|dict_get:day|length }} task{{ tasks_by_day|dict_get:day|length|pluralize }}
+                </span>
+              </a>
+            {% else %}
+              <span class="calendar__date">&nbsp;</span>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+      {% endwith %}
+    </section>
+
+
+  </section>
+
+</section>
+  <div class="info-column">
+  {% if workers %}
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Assigners</th>
+            <th>Tasks Done</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for worker in workers %}
+            <tr>
+              <th>
+                <a href="{{ worker.get_absolute_url }}">{{ worker.first_name }} {{ worker.last_name }}</a>
+              </th>
+              <th>
+                {{ worker.done_tasks_count }}/{{ worker.tasks_count }}
+              </th>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>There is no worker assigned to any of the tasks</p>
+    {% endif %}
+  </div>
+  <div class="diagram-row">
+    <div class="diagram-container" id="chartWorkers"></div>
+
+    <div class="diagram-container" id="chartPriority"></div>
+  </div>
+  <script src="{% static 'js/canvasjs.min.js' %}"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+      {% if datapoints %}
+      var chart1 = new CanvasJS.Chart("chartWorkers", {
+          theme: "light2",
+          animationEnabled: true,
+          title:{ text: "Tasks per worker" },
+          data: [{
+              type: "pie",
+              startAngle: -90,
+              dataPoints: {{ datapoints|safe }}
+          }]
+      });
+      chart1.render();
+      {% endif %}
+
+      {% if priority_counts %}
+      var chart2 = new CanvasJS.Chart("chartPriority", {
+          animationEnabled: true,
+          exportEnabled: true,
+          title: { text: "Tasks by Priority" },
+          axisY: { title: "Tasks count" },
+          data: [{
+              type: "column",
+              dataPoints: {{ priority_counts|safe }}
+          }]
+      });
+      chart2.render();
+      {% endif %}
+      window.addEventListener("resize", () => {
+          chart1.render();
+          chart2.render();
+      });
+
+  });
+  </script>
+
+</div>
+
+{% endblock %}

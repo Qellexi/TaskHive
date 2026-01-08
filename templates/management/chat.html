@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+  <h1>Chats <a class="button" href="{% url 'management:chat-create' %}">+</a></h1>
+  <div style="display: flex; width: 100%;">
+    <div style="width: 30%; float: left;" class="card-box">
+      <ul id="chatList">
+      {% for chat in chat_list %}
+        <li class="chat-card"
+          data-id="{{ chat.id }}"
+          data-user-id="{{ chat.other_user.id }}"
+          data-private="{{ chat.is_private|yesno:'1,0' }}">
+          {% if chat.is_private %}
+            {{ chat.other_user.username }}
+          {% else %}
+            {{ chat.name }}
+          {% endif %}
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+    <div style="width: 70%; float: right;" class="chat-box">
+      <h2 id="chat-title" class="chat-title"></h2>
+      <div id="chat-log" class="chat-log"></div>
+      <div class="chat-input-row">
+        <input id="chat-message-input" type="text" class="send_box" />
+        <input id="chat-message-submit" type="button" value="Send" />
+      </div>
+    </div>
+  </div>
+  <script>
+    const currentUserId = {{ request.user.id }};
+  </script>
+  <script src="{% static 'js/chat_group.js' %}"></script>
+  <script src="{% static 'js/chat_private.js' %}"></script>
+  <script src="{% static 'js/chat_blocks.js' %}"></script>
+
+{% endblock %}

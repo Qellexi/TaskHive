@@ -1,0 +1,54 @@
+<ul class="sidebar-nav menu-top">
+    <li class="sidebar-user-block">
+      <a href="{% url 'management:profile' %}">
+        <iconify-icon icon="ic:round-account-circle"></iconify-icon>
+      </a>
+      {% if user.is_authenticated %}
+        <span class="username">{{ user.username }}</span>
+        {% else %}
+          <a href="{% url 'login' %}">Login</a>
+      {% endif %}
+    </li>
+    <li>
+      <a href="{% url 'management:index' %}">
+        <iconify-icon icon="ic:round-dashboard"></iconify-icon>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'management:comment-list' %}">
+        <iconify-icon icon="ion:notifications"></iconify-icon>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'management:chat-list' %}">
+        <iconify-icon icon="flowbite:messages-solid"></iconify-icon>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'management:team-list' %}">
+        <iconify-icon icon="fluent:people-team-20-filled"></iconify-icon>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'management:task-list' %}">
+        <iconify-icon icon="pajamas:list-task"></iconify-icon>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'management:project-list' %}">
+        <iconify-icon icon="fluent:projection-screen-text-sparkle-16-filled"></iconify-icon>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'management:about' %}">
+        <iconify-icon icon="mingcute:question-line"></iconify-icon>
+      </a>
+    </li>
+</ul>
+<ul class="sidebar-nav menu-bottom">
+    <li>
+        <a href="{% url 'logout' %}">
+            <iconify-icon icon="uil:exit"></iconify-icon>
+        </a>
+    </li>
+</ul>

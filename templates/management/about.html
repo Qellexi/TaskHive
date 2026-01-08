@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block content %}
+<h1>Welcome to TaskHive!</h1>
+<p style="font-size: 18px;">
+  TaskHive — це система управління задачами, командами та проектами.
+  Тут ви можете:
+</p>
+
+<ul style="font-size: 18px; line-height: 1.7;">
+  <li><strong>Створювати команди</strong> і додавати працівників</li>
+  <li><strong>Створювати та керувати проектами</strong></li>
+  <li><strong>Призначати задачі</strong> працівникам</li>
+  <li><strong>Стежити за прогресом</strong> у вигляді календаря</li>
+  <li><strong>Коментувати задачі</strong> у своїх командах</li>
+  <li><strong>Спілкуватися в чатах</strong></li>
+</ul>
+
+<hr>
+
+<h2>Як користуватися?</h2>
+<ol style="font-size: 18px; line-height: 1.7;">
+  <li>Зареєструйтесь або увійдіть.</li>
+  <li>Приєднайтесь до команди або створіть свою.</li>
+  <li>Створіть проект і додайте до нього задачі.</li>
+  <li>Призначайте задачі працівникам.</li>
+  <li>Відстежуйте дедлайни через календар.</li>
+  <li>Коментуйте задачі для пояснень.</li>
+</ol>
+
+<hr>
+
+<h2>Зворотній зв’язок</h2>
+<p>Якщо у вас є побажання або проблеми — напишіть нам:</p>
+
+<form method="POST" action="{% url 'management:feedback' %}">
+    {% csrf_token %}
+    {{ feedback_form|crispy }}
+    <button class="button" type="submit">Send</button>
+</form>
+{% endblock %}
