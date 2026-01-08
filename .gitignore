@@ -1,3 +1,16 @@
-.idea
-venv
-**__pycache__
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Django
+db.sqlite3
+staticfiles/
+media/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
