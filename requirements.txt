@@ -1,5 +1,23 @@
 Django>=4.2,<5.0
-gunicorn
+
+# ASGI / WebSockets
+daphne
+channels
+
+# Database
 psycopg2-binary
+
+# Static files
 whitenoise
+django-sass-processor
+
+# Forms
+django-crispy-forms
+crispy-bootstrap4
+
+# Server
+gunicorn
+
+# Utils
 python-dotenv
+django-extensions
