@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Comments and notifications</h1>
+    {% if comment_list %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Worker</th>
+            <th>Task</th>
+            <th>Content</th>
+            <th>Sent</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for comment in comment_list %}
+            <tr>
+              <th>
+                <a href="{{ comment.worker.get_absolute_url }}">{{ comment.worker.username }}</a>
+              </th>
+              <th>
+                <a href="{{ comment.task.get_absolute_url }}">{{ comment.task.name }}</a>
+              </th>
+              <th>{{ comment.text }}</th>
+              <th>{{ comment.created_at }}</th>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>You have not received any notifications yet.</p>
+  {% endif %}
+{% endblock %}

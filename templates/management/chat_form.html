@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<h2>Start a Chat</h2>
+
+<!-- ------------------------------ -->
+<!-- PRIVATE CHATS SECTION -->
+<!-- ------------------------------ -->
+
+<h3>Private Chat</h3>
+<ul>
+{% for worker in workers %}
+<li>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="worker_id" value="{{ worker.id }}">
+    <button type="submit" name="start_private">Chat with {{ worker.username }}</button>
+  </form>
+</li>
+{% endfor %}
+</ul>
+<hr>
+<!-- ------------------------------ -->
+<!-- GROUP CHAT CREATION BUTTON -->
+<!-- ------------------------------ -->
+
+<button id="show-group-form" style="margin-bottom: 10px">
+  Create Group Chat
+</button>
+
+<!-- ------------------------------ -->
+<!-- GROUP CHAT FORM (HIDDEN INITIALLY) -->
+<!-- ------------------------------ -->
+
+<div id="group-form" style="display: none; padding: 10px;">
+  <h3>Create a Group</h3>
+  <form method="POST">
+    {% csrf_token %}
+    {{group_form.name.label_tag}}<br>
+    {{ group_form.name }}
+    <h4>Select members:</h4>
+    {{ group_form.members }}
+      <br>
+      <button type="submit" name="create_group">Create Group Chat</button>
+  </form>
+</div>
+<script>
+  document.getElementById("show-group-form").onclick = function() {
+      document.getElementById("group-form").style.display = "block"
+  };
+</script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Project list<a class="button" href="{% url 'management:project-create' %}">+</a></h1>
+    {% if project_list %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Teams</th>
+            <th>Deadline</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for project in project_list %}
+            <tr>
+              <th>
+                <a href="{{ project.get_absolute_url }}">{{ project.name }}</a>
+              </th>
+              <th>
+                {% for team in project.teams.all %}
+                  <a href="{{ team.get_absolute_url }}">{{ team.name }}</a>
+                  {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </th>
+              <th>{{ project.deadline }}</th>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>You have not assigned to any project yet.</p>
+  {% endif %}
+{% endblock %}

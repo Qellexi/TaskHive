@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Teams<a class="button" href="{% url 'management:team-create' %}">+</a></h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Project</th>
+        <th>Assigners</th>
+      </tr>
+    </thead>
+    {% for team in team_list %}
+      {% if request.user in team.workers.all %}
+          <tbody>
+            <tr>
+              <th><a href="{{ team.get_absolute_url }}">{{ team.name }}</a></th>
+              <th>
+                {% for project in team.projects.all %}
+                  <a href="{{ project.get_absolute_url }}">{{ project }}</a>
+                  {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </th>
+              <th>
+                {% for worker in team.workers.all %}
+                  {% if user.id == worker.id %}
+                    <a href={% url "management:profile" %}>{{ worker.last_name }} {{ worker.first_name }}</a>
+                  {% else %}
+                    <a href="{{ worker.get_absolute_url }}">{{ worker.last_name }} {{ worker.first_name }}</a>
+                  {% endif %}
+                  {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </th>
+            </tr>
+          </tbody>
+
+      {% endif %}
+      {% empty %}
+        <p>There is no teams, you are connected to.</p>
+    {% endfor %}
+  </table>
+{% endblock %}

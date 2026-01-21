@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Task: {{ task.name }}
+  <a class="button" href="{% url 'management:task-update' pk=task.id %}">Edit</a>
+  <a class="button btn-delete" href="{% url 'management:task-delete' pk=task.id %}">Delete</a>
+</h1>
+  {% if task.description %}
+    <div style="margin: 20px 0 20px;">
+      {{ task.description }}
+    </div>
+  {% endif %}
+  <br>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Deadline</th>
+        <th>Assigners</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><a href="{{ task.project.get_absolute_url }}">{{ task.project.name }}</a></th>
+        <th>{{ task.status }}</th>
+        <th>{{ task.priority }}</th>
+        <th>{{ task.deadline }}</th>
+        <th>
+          {% for worker in task.workers.all %}
+            <a href="{{ worker.get_absolute_url }}">{{ worker.last_name }} {{ worker.first_name }}</a>
+            {% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </th>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

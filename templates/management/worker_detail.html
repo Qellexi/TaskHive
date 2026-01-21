@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Worker Profile
+    {% if user.id == worker.id %}
+      <a class="button" href="{% url 'management:worker-update' pk=user.id %}">Edit</a>
+    {% endif %}
+    {% if user.role == "manager" or user.is_superuser or user.id == worker.id %}
+      <a class="button btn-delete" href="{% url 'management:worker-delete' pk=worker.id %}">Delete</a>
+    {% endif %}
+  </h1>
+  <ul class="info">
+    <li><strong>Username:</strong> {{ worker.username }}</li>
+    <li><strong>First name:</strong> {{ worker.first_name }}</li>
+    <li><strong>Last name:</strong> {{ worker.last_name }}</li>
+    <li><strong>Email:</strong> {{ worker.email }}</li>
+    <li><strong>Position:</strong> {{ worker.position }}</li>
+    <li><strong>Role:</strong> {{ worker.role }}</li>
+    <li><strong>Department:</strong> {{ worker.position.department.name }}</li>
+    <li><strong>Organization:</strong> {{ worker.organization }}</li>
+  </ul>
+
+{% endblock %}

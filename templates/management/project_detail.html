@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Project: {{ project.name }}
+    <a class="button" href="{% url 'management:project-update' pk=project.id %}">Edit</a>
+    {% if user.role == "manager" or user.is_superuser %}
+      <a class="button btn-delete" href="{% url 'management:project-delete' pk=project.id %}">Delete</a>
+    {% endif %}
+  </h1>
+  {% if project.description %}
+    <p>Description: {{ project.description }}</p>
+  {% endif %}
+  <table class="table">
+        <thead>
+          <tr>
+            <th>Teams</th>
+            <th>Deadline</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              {% for team in project.teams.all %}
+                <a href="{{ team.get_absolute_url }}">{{ team.name }}</a>
+                {% if not forloop.last %}, {% endif %}
+              {% endfor %}
+            </th>
+            <th>{{ project.deadline }}</th>
+          </tr>
+        </tbody>
+      </table>
+  {% for task in tasks %}
+  <div class="task-wrapper">
+    <div class="task-left">
+        <h4>{{ task.name }}</h4>
+        <p>{{ task.description }}</p>
+    </div>
+
+    <div class="task-right">
+        <div class="comments">
+            {% for comment in task.comment_set.all %}
+                <div class="comment">
+                    <strong>{{ comment.worker }}</strong>: {{ comment.text }}
+                    {% if user == comment.worker or user.is_staff %}
+                      <form method="POST" action="{% url 'management:delete_comment' comment.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-btn">✖</button>
+                      </form>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <div>No comments yet</div>
+            {% endfor %}
+        </div>
+
+        <form class="add-comment-form"
+              method="POST"
+              action="{% url 'management:add_comment' task.id %}">
+            {% csrf_token %}
+            {{ comment_form.text }}
+            <button type="submit">Add Comment</button>
+        </form>
+
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}

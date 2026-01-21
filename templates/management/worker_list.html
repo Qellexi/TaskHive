@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+{#  <a style="float: right" href="{% url 'taxi:worker-create' %}">+</a>#}
+  <h1>Worker List</h1>
+  {% if worker_list %}
+    <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Worker Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for worker in worker_list %}
+      <tr>
+        <td>{{ worker.id }}</td>
+        <td>
+          {% if user.id == worker.id %}
+            <a href={% url "management:profile" %}>{{ worker.username }}</a>
+          {% else %}
+            <a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a>
+          {% endif %}
+        </td>
+        <td>{{ worker.last_name }} {{ worker.first_name }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+  {% endif %}
+
+{% endblock %}

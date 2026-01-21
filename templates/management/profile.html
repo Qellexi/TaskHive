@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>User Profile
+    <a class="button" href="{% url 'management:worker-update' pk=user.id %}">Edit</a>
+    <a class="button btn-delete" href="{% url 'management:worker-delete' pk=user.id %}">Delete</a>
+  </h1>
+  <ul class="info">
+    <li><strong>Username:</strong> {{ user.username }}</li>
+    <li><strong>First name:</strong> {{ user.first_name }}</li>
+    <li><strong>Last name:</strong> {{ user.last_name }}</li>
+    <li><strong>Email:</strong> {{ user.email }}</li>
+    <li><strong>Position:</strong> {{ user.position }}</li>
+    <li><strong>Role:</strong> {{ user.role }}</li>
+    <li><strong>Department:</strong> {{ user.position.department.name }}</li>
+    <li><strong>Organization:</strong> {{ user.organization }}</li>
+  </ul>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+{#  <a style="float: right" href="{% url 'taxi:worker-create' %}">+</a>#}
+  <h1>Task List<a class="button" href="{% url 'management:task-create' %}">+</a></h1>
+  {% if task_list %}
+    <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Deadline</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in task_list %}
+        {% if request.user in task.workers.all %}
+          <tr style="background-color: {{ task.type.color }}">
+            <td>{{ task.id }}</td>
+            <td><a href="{{ task.get_absolute_url }}">{{ task.name }}</a></td>
+            <td>{{ task.status }}</td>
+            <td>{{ task.priority }}</td>
+            <td>{{ task.deadline }}</td>
+          </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+    </table>
+    <div class="task-status-container">
+    {% for status_group in status_groups %}
+      <div class="task-block" style="background: {{ status_group.color }}">
+        <h3>{{ status_group.label }}</h3>
+        <ul class="task-list">
+            {% for task in status_group.tasks %}
+                <li>{{ task.name }}</li>
+            {% empty %}
+                <i>No tasks</i>
+            {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+    </div>
+
+  {% endif %}
+
+{% endblock %}
