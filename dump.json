@@ -1,0 +1,955 @@
+[
+{
+    "model": "management.organization",
+    "pk": 1,
+    "fields": {
+        "name": "TaskHive Inc.",
+        "code": null
+    }
+},
+{
+    "model": "management.worker",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$IgtOKNkN8XOTz1daO9EEyc$X1c5vJDnw2mHda3+GWPwT588StxSjpNTG3nhrOhG3SM=",
+        "last_login": "2026-01-21T15:18:26.905Z",
+        "is_superuser": true,
+        "username": "admin",
+        "email": "admin@taskhive.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-01-01T00:00:00Z",
+        "first_name": "Yuliia",
+        "last_name": "Vasylieva",
+        "position": 1,
+        "organization": 1,
+        "role": "admin",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "management.worker",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$hash",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "john_doe",
+        "email": "john@taskhive.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-01T00:00:00Z",
+        "first_name": "John",
+        "last_name": "Doe",
+        "position": 1,
+        "organization": 1,
+        "role": "developer",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "management.worker",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$hash",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "emma_smith",
+        "email": "emma@taskhive.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-01T00:00:00Z",
+        "first_name": "Emma",
+        "last_name": "Smith",
+        "position": 2,
+        "organization": 1,
+        "role": "project_manager",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "management.worker",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$hash",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "michael_lee",
+        "email": "michael@taskhive.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-01T00:00:00Z",
+        "first_name": "Michael",
+        "last_name": "Lee",
+        "position": 3,
+        "organization": 1,
+        "role": "qa",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "management.worker",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$hash",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "sophia_khan",
+        "email": "sophia@taskhive.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-01T00:00:00Z",
+        "first_name": "Sophia",
+        "last_name": "Khan",
+        "position": 4,
+        "organization": 1,
+        "role": "marketing",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "management.tasktype",
+    "pk": 1,
+    "fields": {
+        "name": "Development",
+        "color": "#ffd6d1"
+    }
+},
+{
+    "model": "management.tasktype",
+    "pk": 2,
+    "fields": {
+        "name": "Testing",
+        "color": "#fafaa3"
+    }
+},
+{
+    "model": "management.tasktype",
+    "pk": 3,
+    "fields": {
+        "name": "Management",
+        "color": "#e2f8ff"
+    }
+},
+{
+    "model": "management.tasktype",
+    "pk": 4,
+    "fields": {
+        "name": "Marketing",
+        "color": "#f5ccff"
+    }
+},
+{
+    "model": "management.task",
+    "pk": 1,
+    "fields": {
+        "name": "Initialize admin project",
+        "description": "Setup initial project structure and team.",
+        "is_completed": false,
+        "type": 3,
+        "project": 1,
+        "priority": "urgent",
+        "status": "todo",
+        "deadline": "2025-12-12T15:00:00Z",
+        "organization": 1,
+        "workers": [
+            1
+        ]
+    }
+},
+{
+    "model": "management.task",
+    "pk": 2,
+    "fields": {
+        "name": "Build Authentication API",
+        "description": "Develop login, registration, and token authentication.",
+        "is_completed": false,
+        "type": 1,
+        "project": 1,
+        "priority": "high",
+        "status": "in_progress",
+        "deadline": "2026-01-05T00:00:00Z",
+        "organization": 1,
+        "workers": [
+            2
+        ]
+    }
+},
+{
+    "model": "management.task",
+    "pk": 3,
+    "fields": {
+        "name": "Create Database Schema",
+        "description": "Design core DB schema for users, tasks, and chats.",
+        "is_completed": false,
+        "type": 1,
+        "project": 1,
+        "priority": "medium",
+        "status": "todo",
+        "deadline": "2025-12-11T18:00:00Z",
+        "organization": 1,
+        "workers": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "management.task",
+    "pk": 4,
+    "fields": {
+        "name": "API Integration Testing",
+        "description": "Test API endpoints for authentication and tasks.",
+        "is_completed": false,
+        "type": 2,
+        "project": 1,
+        "priority": "high",
+        "status": "todo",
+        "deadline": "2025-12-12T15:00:00Z",
+        "organization": 1,
+        "workers": [
+            4
+        ]
+    }
+},
+{
+    "model": "management.task",
+    "pk": 5,
+    "fields": {
+        "name": "Implement Mobile UI Screens",
+        "description": "Create onboarding, login, and dashboard screens.",
+        "is_completed": false,
+        "type": 1,
+        "project": 2,
+        "priority": "high",
+        "status": "in_progress",
+        "deadline": "2025-01-10T00:00:00Z",
+        "organization": 1,
+        "workers": [
+            2
+        ]
+    }
+},
+{
+    "model": "management.task",
+    "pk": 6,
+    "fields": {
+        "name": "Mobile App Test Plan",
+        "description": "Write detailed testing plan for mobile application.",
+        "is_completed": false,
+        "type": 2,
+        "project": 2,
+        "priority": "medium",
+        "status": "todo",
+        "deadline": "2025-06-20T00:00:00Z",
+        "organization": 1,
+        "workers": [
+            4
+        ]
+    }
+},
+{
+    "model": "management.task",
+    "pk": 7,
+    "fields": {
+        "name": "Sprint Planning Meeting",
+        "description": "Review mobile progress and set next sprint goals.",
+        "is_completed": false,
+        "type": 3,
+        "project": 2,
+        "priority": "low",
+        "status": "todo",
+        "deadline": "2025-05-01T00:00:00Z",
+        "organization": 1,
+        "workers": [
+            3
+        ]
+    }
+},
+{
+    "model": "management.task",
+    "pk": 8,
+    "fields": {
+        "name": "Prepare Social Media Campaign",
+        "description": "Draft campaign materials for new marketing launch.",
+        "is_completed": false,
+        "type": 4,
+        "project": 3,
+        "priority": "high",
+        "status": "in_progress",
+        "deadline": "2025-09-15T00:00:00Z",
+        "organization": 1,
+        "workers": [
+            5
+        ]
+    }
+},
+{
+    "model": "management.task",
+    "pk": 9,
+    "fields": {
+        "name": "Market Research Report",
+        "description": "Analyze trends and prepare a competitive overview.",
+        "is_completed": false,
+        "type": 4,
+        "project": 3,
+        "priority": "medium",
+        "status": "todo",
+        "deadline": "2025-08-30T00:00:00Z",
+        "organization": 1,
+        "workers": [
+            5
+        ]
+    }
+},
+{
+    "model": "management.task",
+    "pk": 14,
+    "fields": {
+        "name": "Make Search View",
+        "description": "make search views for all models",
+        "is_completed": false,
+        "type": 1,
+        "project": 1,
+        "priority": "urgent",
+        "status": "todo",
+        "deadline": "2025-12-10T10:00:00Z",
+        "organization": 1,
+        "workers": [
+            1
+        ]
+    }
+},
+{
+    "model": "management.department",
+    "pk": 1,
+    "fields": {
+        "name": "Engineering",
+        "organization": 1
+    }
+},
+{
+    "model": "management.department",
+    "pk": 2,
+    "fields": {
+        "name": "Product",
+        "organization": 1
+    }
+},
+{
+    "model": "management.department",
+    "pk": 3,
+    "fields": {
+        "name": "Marketing",
+        "organization": 1
+    }
+},
+{
+    "model": "management.position",
+    "pk": 1,
+    "fields": {
+        "name": "Software Engineer",
+        "department": 1,
+        "organization": 1
+    }
+},
+{
+    "model": "management.position",
+    "pk": 2,
+    "fields": {
+        "name": "Project Manager",
+        "department": 2,
+        "organization": 1
+    }
+},
+{
+    "model": "management.position",
+    "pk": 3,
+    "fields": {
+        "name": "QA Engineer",
+        "department": 1,
+        "organization": 1
+    }
+},
+{
+    "model": "management.position",
+    "pk": 4,
+    "fields": {
+        "name": "Marketing Lead",
+        "department": 3,
+        "organization": 1
+    }
+},
+{
+    "model": "management.team",
+    "pk": 1,
+    "fields": {
+        "name": "Admin Team",
+        "organization": 1,
+        "workers": [
+            1
+        ]
+    }
+},
+{
+    "model": "management.team",
+    "pk": 2,
+    "fields": {
+        "name": "Backend Team",
+        "organization": 1,
+        "workers": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "management.team",
+    "pk": 3,
+    "fields": {
+        "name": "QA Team",
+        "organization": 1,
+        "workers": [
+            4
+        ]
+    }
+},
+{
+    "model": "management.team",
+    "pk": 4,
+    "fields": {
+        "name": "Marketing Team",
+        "organization": 1,
+        "workers": [
+            5
+        ]
+    }
+},
+{
+    "model": "management.team",
+    "pk": 6,
+    "fields": {
+        "name": "Manager Team",
+        "organization": 1,
+        "workers": [
+            1,
+            3
+        ]
+    }
+},
+{
+    "model": "management.project",
+    "pk": 1,
+    "fields": {
+        "name": "Core Platform Development",
+        "description": "Main internal platform development project.",
+        "deadline": "2025-12-31T00:00:00Z",
+        "organization": 1,
+        "teams": [
+            1,
+            2,
+            6
+        ]
+    }
+},
+{
+    "model": "management.project",
+    "pk": 2,
+    "fields": {
+        "name": "Mobile App",
+        "description": "Building the customer-facing mobile application.",
+        "deadline": "2025-10-20T00:00:00Z",
+        "organization": 1,
+        "teams": [
+            2,
+            6,
+            3
+        ]
+    }
+},
+{
+    "model": "management.project",
+    "pk": 3,
+    "fields": {
+        "name": "Marketing Expansion",
+        "description": "Social media and outreach expansion.",
+        "deadline": "2025-11-15T00:00:00Z",
+        "organization": 1,
+        "teams": [
+            6,
+            4
+        ]
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 1,
+    "fields": {
+        "worker": 2,
+        "task": 1,
+        "text": "I've started preparing the initial API structure so you can integrate it faster.",
+        "created_at": "2025-01-02T09:15:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 2,
+    "fields": {
+        "worker": 3,
+        "task": 1,
+        "text": "Let me know if you need help with project documentation.",
+        "created_at": "2025-01-02T10:20:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 3,
+    "fields": {
+        "worker": 1,
+        "task": 2,
+        "text": "John, make sure the authentication endpoints include refresh token logic.",
+        "created_at": "2025-01-03T08:30:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 4,
+    "fields": {
+        "worker": 4,
+        "task": 2,
+        "text": "When you're done, please ping me so I can start writing tests immediately.",
+        "created_at": "2025-01-03T12:50:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 5,
+    "fields": {
+        "worker": 2,
+        "task": 3,
+        "text": "Schema draft is almost ready. Will add relations for chats as well.",
+        "created_at": "2025-01-04T11:00:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 6,
+    "fields": {
+        "worker": 1,
+        "task": 3,
+        "text": "Looks good so far. Add constraints for unique usernames.",
+        "created_at": "2025-01-04T13:45:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 7,
+    "fields": {
+        "worker": 4,
+        "task": 4,
+        "text": "Starting with authentication tests today.",
+        "created_at": "2025-01-05T09:10:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 8,
+    "fields": {
+        "worker": 1,
+        "task": 4,
+        "text": "Make sure to validate error messages and edge cases.",
+        "created_at": "2025-01-05T11:30:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 9,
+    "fields": {
+        "worker": 2,
+        "task": 5,
+        "text": "Login screen finished. Moving to onboarding flow.",
+        "created_at": "2025-01-06T10:15:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 10,
+    "fields": {
+        "worker": 3,
+        "task": 5,
+        "text": "We need the mobile UI by next sprint planning, keep me updated.",
+        "created_at": "2025-01-06T12:40:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 12,
+    "fields": {
+        "worker": 3,
+        "task": 6,
+        "text": "Please include performance testing scenarios too.",
+        "created_at": "2025-01-07T14:20:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 13,
+    "fields": {
+        "worker": 3,
+        "task": 7,
+        "text": "Meeting agenda drafted. Reviewing final details.",
+        "created_at": "2025-01-08T08:45:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 14,
+    "fields": {
+        "worker": 2,
+        "task": 7,
+        "text": "Add the API blockers section before sending.",
+        "created_at": "2025-01-08T09:30:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 15,
+    "fields": {
+        "worker": 5,
+        "task": 8,
+        "text": "Working on campaign drafts for Instagram and LinkedIn.",
+        "created_at": "2025-01-09T10:00:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 16,
+    "fields": {
+        "worker": 1,
+        "task": 8,
+        "text": "Looks promising. Add a short tagline option too.",
+        "created_at": "2025-01-09T12:15:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 17,
+    "fields": {
+        "worker": 5,
+        "task": 9,
+        "text": "Collected first set of competitor insights.",
+        "created_at": "2025-01-10T09:25:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 18,
+    "fields": {
+        "worker": 1,
+        "task": 9,
+        "text": "Great start. Add customer segmentation if possible.",
+        "created_at": "2025-01-10T11:00:00Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.comment",
+    "pk": 19,
+    "fields": {
+        "worker": 1,
+        "task": 14,
+        "text": "Make search view for whole site",
+        "created_at": "2025-11-30T02:50:33.555Z",
+        "organization": 1
+    }
+},
+{
+    "model": "management.chatroom",
+    "pk": 1,
+    "fields": {
+        "name": "General Group Chat",
+        "organization": null,
+        "members": [
+            1,
+            3,
+            2,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "management.chatroom",
+    "pk": 2,
+    "fields": {
+        "name": "Backend Team Chat",
+        "organization": null,
+        "members": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "management.chatroom",
+    "pk": 3,
+    "fields": {
+        "name": "private_2_3",
+        "organization": null,
+        "members": [
+            3,
+            2
+        ]
+    }
+},
+{
+    "model": "management.chatroom",
+    "pk": 4,
+    "fields": {
+        "name": "private_1_2",
+        "organization": null,
+        "members": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "management.chatroom",
+    "pk": 5,
+    "fields": {
+        "name": "private_1_4",
+        "organization": null,
+        "members": [
+            1,
+            4
+        ]
+    }
+},
+{
+    "model": "management.chatroom",
+    "pk": 6,
+    "fields": {
+        "name": "private_1_5",
+        "organization": null,
+        "members": [
+            1,
+            5
+        ]
+    }
+},
+{
+    "model": "management.chatroom",
+    "pk": 7,
+    "fields": {
+        "name": "private_1_6",
+        "organization": null,
+        "members": []
+    }
+},
+{
+    "model": "management.chatroom",
+    "pk": 8,
+    "fields": {
+        "name": "Group 8",
+        "organization": 1,
+        "members": [
+            1,
+            3,
+            2,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "management.chatroom",
+    "pk": 9,
+    "fields": {
+        "name": "Group 9",
+        "organization": 1,
+        "members": [
+            1,
+            3,
+            2,
+            4
+        ]
+    }
+},
+{
+    "model": "management.chatroom",
+    "pk": 10,
+    "fields": {
+        "name": "private_1_3",
+        "organization": 1,
+        "members": [
+            1,
+            3
+        ]
+    }
+},
+{
+    "model": "management.message",
+    "pk": 1,
+    "fields": {
+        "sender": 1,
+        "content": "Welcome everyone to TaskHive!",
+        "room": 1,
+        "timestamp": "2025-01-01T10:00:00Z",
+        "organization": null
+    }
+},
+{
+    "model": "management.message",
+    "pk": 2,
+    "fields": {
+        "sender": 2,
+        "content": "Backend team, let's push the API update today.",
+        "room": 2,
+        "timestamp": "2025-01-01T11:00:00Z",
+        "organization": null
+    }
+},
+{
+    "model": "management.message",
+    "pk": 3,
+    "fields": {
+        "sender": 3,
+        "content": "Hey John, can we discuss the project timeline?",
+        "room": 3,
+        "timestamp": "2025-01-01T12:00:00Z",
+        "organization": null
+    }
+},
+{
+    "model": "management.message",
+    "pk": 4,
+    "fields": {
+        "sender": 1,
+        "content": "Hi!",
+        "room": 1,
+        "timestamp": "2025-11-21T04:13:29.531Z",
+        "organization": null
+    }
+},
+{
+    "model": "management.message",
+    "pk": 5,
+    "fields": {
+        "sender": 1,
+        "content": "Hi",
+        "room": 4,
+        "timestamp": "2025-11-21T04:14:48.707Z",
+        "organization": null
+    }
+},
+{
+    "model": "management.message",
+    "pk": 6,
+    "fields": {
+        "sender": 1,
+        "content": "Hi",
+        "room": 5,
+        "timestamp": "2025-11-21T23:46:18.120Z",
+        "organization": null
+    }
+},
+{
+    "model": "management.message",
+    "pk": 7,
+    "fields": {
+        "sender": 1,
+        "content": "Hi, michael",
+        "room": 6,
+        "timestamp": "2025-11-21T23:46:34.103Z",
+        "organization": null
+    }
+},
+{
+    "model": "management.message",
+    "pk": 8,
+    "fields": {
+        "sender": 1,
+        "content": "Hello",
+        "room": 5,
+        "timestamp": "2025-11-21T23:47:46.551Z",
+        "organization": null
+    }
+},
+{
+    "model": "management.message",
+    "pk": 9,
+    "fields": {
+        "sender": 1,
+        "content": "Oh, no, hi, sopfia",
+        "room": 6,
+        "timestamp": "2025-11-22T02:29:09.667Z",
+        "organization": null
+    }
+},
+{
+    "model": "management.message",
+    "pk": 10,
+    "fields": {
+        "sender": 1,
+        "content": "Hallo, emma",
+        "room": 10,
+        "timestamp": "2025-11-22T13:15:24.108Z",
+        "organization": null
+    }
+},
+{
+    "model": "management.message",
+    "pk": 11,
+    "fields": {
+        "sender": 1,
+        "content": "Hi, everyone!",
+        "room": 8,
+        "timestamp": "2025-11-22T13:15:37.317Z",
+        "organization": null
+    }
+},
+{
+    "model": "management.message",
+    "pk": 12,
+    "fields": {
+        "sender": 1,
+        "content": "Hi, there",
+        "room": 9,
+        "timestamp": "2025-11-22T14:24:10.632Z",
+        "organization": null
+    }
+},
+{
+    "model": "management.message",
+    "pk": 13,
+    "fields": {
+        "sender": 1,
+        "content": "Yes! Great idea!",
+        "room": 2,
+        "timestamp": "2025-11-22T14:39:20.624Z",
+        "organization": null
+    }
+}
+]
