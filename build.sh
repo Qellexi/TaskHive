@@ -1,4 +1,4 @@
-#!/usr/bin/env bach
+#!/usr/bin/env bash
 
 # Exit no error
 set -o errexit
