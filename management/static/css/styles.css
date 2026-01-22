@@ -60,7 +60,7 @@ html, body {
 }
 
 iconify-icon {
-    font-size: 32px;
+    font-size: 20px;
     color: #404040;
     margin: 10px;
 }
@@ -85,13 +85,13 @@ iconify-icon {
 }
 
 .sidebar-user-block .username {
-    font-size: 15px;
+    font-size: 10px;
     margin-top: -20px;
     color: #404040;
 }
 
 .topbar {
-    height: 90px;
+    height: 80px;
     width: 100%;
     background-color: #D9D9D9;
     color: #404040;
@@ -466,7 +466,7 @@ iconify-icon {
 
 }
 .task-block h3{
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 10px;
     font-weight: bold;
     text-align: center;
