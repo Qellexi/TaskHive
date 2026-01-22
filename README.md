@@ -22,6 +22,17 @@
 TaskHive is a **lightweight web-based task management system** designed for IT teams — including developers, designers, project managers, and QA engineers — to **plan, assign, and track tasks efficiently**, improving collaboration and productivity within a project. :contentReference[oaicite:1]{index=1}
 
 ---
+## 🚀 Live Demo
+https://taskhive-q2ln.onrender.com
+
+## 🛠 Deployment
+The project is deployed using Render.
+
+## 👤 Test Account
+- Login: testuser
+- Password: testpassword123
+
+---
 
 ## 🖼️ Screenshots
 
@@ -95,3 +106,4 @@ python manage.py migrate
 
 # Run the development server
 python manage.py runserver
+
