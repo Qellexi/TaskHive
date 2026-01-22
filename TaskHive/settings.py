@@ -150,7 +150,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-LOGIN_REDIRECT_URL = "/accounts/login/"
-LOGOUT_REDIRECT_URL = "/"
+LOGIN_URL = "management:login"
+LOGIN_REDIRECT_URL = "management:index"
+LOGOUT_REDIRECT_URL = "management:login"
+
+
 
 ASGI_APPLICATION = 'TaskHive.asgi.application'

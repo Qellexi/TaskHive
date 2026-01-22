@@ -2,7 +2,7 @@ import calendar
 from datetime import datetime, timedelta
 
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Max, Q, Count
@@ -50,7 +50,7 @@ def assign_organization(request):
             org = Organization.objects.get(id=org_id)
             request.user.organization = org
             request.user.save()
-            return redirect("management/index.html")
+            return redirect("management:index")
 
     orgs = Organization.objects.all()
     return render(request, "management/organization_form.html", {"organizations": orgs})
@@ -130,7 +130,24 @@ def index(request):
     }
     return render(request, "management/index.html", context)
 
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
 
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)          # ← КЛЮЧОВЕ
+            return redirect("management:index")
+        else:
+            return render(
+                request,
+                "registration/login.html",
+                {"error": "Invalid username or password"}
+            )
+
+    return render(request, "registration/login.html")
 @login_required
 def profile(request):
     return render(request, "management/profile.html")

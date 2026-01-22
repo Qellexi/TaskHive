@@ -1,4 +1,3 @@
-/* ===== GLOBAL ===== */
 body {
   margin: 0;
   height: 100vh;
@@ -9,84 +8,121 @@ body {
   background: #f5f5f5;
 }
 
-/* ===== CONTAINER ===== */
 .container {
   position: relative;
   width: 900px;
   height: 500px;
-  display: flex;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
-/* ===== PANELS ===== */
-.panel {
+.form-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 50%;
-  padding: 40px;
+  height: 100%;
   background: #e5e5e5;
-  transition: transform 0.6s ease-in-out;
+  padding: 40px;
+  box-sizing: border-box;
+  transition: transform 0.6s ease;
+  z-index: 2;
 }
 
-.panel h2 {
+.container.active .form-slider {
+  transform: translateX(100%);
+}
+
+.form {
+  position: absolute;
+  inset: 40px;
+  transition: opacity 0.4s ease;
+}
+
+.login-form {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.register-form {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.container.active .login-form {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.container.active .register-form {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.form h2 {
   margin-bottom: 20px;
+  font-size: 26px;
+  color: #222;
+  text-align: center;
 }
 
-/* ===== FORMS ===== */
-.panel form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.form input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  margin-bottom: 12px;
 }
 
-.panel input {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-}
-
-.panel button {
+.form button {
   margin-top: 10px;
-  padding: 10px;
-  border-radius: 20px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 25px;
   border: none;
   background: #222;
   color: white;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
 }
 
-/* ===== OVERLAY ===== */
 .overlay {
   position: absolute;
-  right: 0;
+  top: 0;
+  left: 50%;
   width: 50%;
   height: 100%;
   background: white;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  transition: transform 0.6s ease-in-out;
+  align-items: center;
+  gap: 16px;
+  transition: transform 0.6s ease;
+  z-index: 1;
 }
 
-.overlay-panel {
-  text-align: center;
+.container.active .overlay {
+  transform: translateX(-100%);
 }
 
-.overlay-panel button {
-  margin-top: 15px;
+.cta-login, .btn-login { display: none; }
+.cta-register, .btn-register { display: block; }
+
+.container.active .cta-register,
+.container.active .btn-register { display: none; }
+
+.container.active .cta-login,
+.container.active .btn-login { display: block; }
+
+.overlay button {
   padding: 10px 20px;
   border-radius: 20px;
   border: none;
   background: #222;
   color: white;
   cursor: pointer;
-}
-
-/* ===== SWITCH STATE ===== */
-.container.active .panel {
-  transform: translateX(100%);
-}
-
-.container.active .overlay {
-  transform: translateX(-100%);
 }
