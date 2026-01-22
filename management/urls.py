@@ -9,13 +9,14 @@ from management.views import (
     assign_organization, ProjectListView, register, ProjectDetailView, TeamListView, TeamDetailView, WorkerUpdateView,
     profile, ProjectUpdateView, chat_view, ChatRoomListView, ChatRoomCreateView, chat_room, CommentListView,
     TaskCreateView, TaskUpdateView, ProjectCreateView, TeamCreateView, TeamUpdateView, add_comment, delete_comment,
-    TaskDeleteView, ProjectDeleteView, TeamDeleteView, WorkerDeleteView, feedback_view, AboutView,
+    TaskDeleteView, ProjectDeleteView, TeamDeleteView, WorkerDeleteView, feedback_view, AboutView, login_view,
 )
 
 urlpatterns = [
     path("", index, name="index"),
     path("register", register, name="register"),
     path("profile", profile, name="profile"),
+    path("login/", login_view, name="login"),
     #path("dashboard"),
     path("workers/", WorkerListView.as_view(), name="worker-list"),
     path("workers/<int:pk>", WorkerDetailView.as_view(), name="worker-detail"),
